@@ -15,9 +15,9 @@ interface MarsPhotoDao {
     @Delete
     suspend fun deleteMarsPhotoItem(marsPhotoItem: MarsPhotoItem)
 
-    @Query("SELECT * FROM mars_photo_times")
+    @Query("SELECT * FROM mars_photo_items")
     fun observeAllMarsPhotoItems(): LiveData<List<MarsPhotoItem>>
 
-    @Query("SELECT SUM(price) FROM mars_photo_times")
+    @Query("SELECT SUM(price) FROM mars_photo_items")
     fun observeTotalPrice(): LiveData<Int>
 }

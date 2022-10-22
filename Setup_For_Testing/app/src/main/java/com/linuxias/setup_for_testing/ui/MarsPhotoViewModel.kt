@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.linuxias.setup_for_testing.data.local.MarsPhotoItem
 import com.linuxias.setup_for_testing.data.remote.MarsPhotoProperty
 import com.linuxias.setup_for_testing.other.Event
+import com.linuxias.setup_for_testing.other.Resource
 import com.linuxias.setup_for_testing.repository.MarsPhotoRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
@@ -28,10 +29,10 @@ class MarsPhotoViewModel @Inject constructor(
     private val _curImageUrl = MutableLiveData<String>()
     val curImageUrl: LiveData<String> = _curImageUrl
 
-    private val _insertMarsPhotoItemStatus = MutableLiveData<Event<MarsPhotoItem>>()
-    val insertMarsPhotoItemStatus: LiveData<Event<MarsPhotoItem>> = _insertMarsPhotoItemStatus
+    private val _insertMarsPhotoItemStatus = MutableLiveData<Event<Resource<MarsPhotoItem>>>()
+    val insertMarsPhotoItemStatus: LiveData<Event<Resource<MarsPhotoItem>>> = _insertMarsPhotoItemStatus
 
-    suspend fun setCurImageUrl(url: String) {
+    fun setCurImageUrl(url: String) {
         _curImageUrl.postValue(url)
     }
 
@@ -44,10 +45,14 @@ class MarsPhotoViewModel @Inject constructor(
     }
 
     fun insertMarsPhotoItem(id: String, price: Int, type: String) {
+        if (id.isEmpty() || price < 0 || type.isEmpty()) {
+            _insertMarsPhotoItemStatus.postValue(Event(Resource.error("Invalid field", null)))
+            return
+        }
 
-    }
-
-    fun searchForImage(imageQuery: String) {
-
+        val marsPhotoItem = MarsPhotoItem(price, id, type, _curImageUrl.value ?: "")
+        insertMarsPhotoItemIntoDb(marsPhotoItem)
+        setCurImageUrl("")
+        _insertMarsPhotoItemStatus.postValue(Event(Resource.success(marsPhotoItem)))
     }
 }

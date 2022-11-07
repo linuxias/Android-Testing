@@ -21,20 +21,18 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object AppModule {
+object RepositoryModule {
     @Singleton
     @Provides
-    fun provideMarsPhotoItemDatabase(
-        @ApplicationContext context: Context
-    ) = Room.databaseBuilder(context, MarsPhotoItemDatabase::class.java, DATABASE_NAME).build()
-
-    @Singleton
-    @Provides
-    fun provideMarsPhotoRepository(
+    fun provideMarsPhotoRepository (
         dao: MarsPhotoDao,
         service: MarsApiService
     ) = MarsPhotoRepositoryImpl(dao, service) as MarsPhotoRepository
+}
 
+@Module
+@InstallIn(SingletonComponent::class)
+object DataSourceeModule {
     @Singleton
     @Provides
     fun provideMarsPhotoDao(
@@ -53,6 +51,15 @@ object AppModule {
             .build()
             .create(MarsApiService::class.java)
     }
+}
+@Module
+@InstallIn(SingletonComponent::class)
+object DatabaseModule {
+    @Singleton
+    @Provides
+    fun provideMarsPhotoItemDatabase(
+        @ApplicationContext context: Context
+    ) = Room.databaseBuilder(context, MarsPhotoItemDatabase::class.java, DATABASE_NAME).build()
 }
 
 val DATABASE_NAME = "mars_photo_db"

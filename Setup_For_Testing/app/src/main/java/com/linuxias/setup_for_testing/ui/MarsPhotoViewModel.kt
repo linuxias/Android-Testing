@@ -16,7 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MarsPhotoViewModel @Inject constructor(
-    private val repository: MarsPhotoRepository
+    val repository: MarsPhotoRepository
 ) : ViewModel() {
 
     val marsPhotoItem = repository.observeAllItems()

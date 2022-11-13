@@ -28,3 +28,9 @@ Contains the FakeRepository needed to test the ViewModel. ViewModel test code is
 ### 3. testing_with_hilt
 Here's the code for a simple way to apply the Dagger-Hilt dependency injection framework to your tests.
 Applying Dagger-Hilt to your tests makes testing very easy. I organized the method and wrote the test code.
+
+### 4. testing_fragment_with_hilt
+Organize a simple configuration and necessary information to test Fragment using Hilt. The test code provides only information that loads fragments very simply.
+Add the test activity for testing the Fragment and the Manifest.xml file specifying the activity information. Also, launchFragmentInContainer
+You cannot use the launchFragmentIncontainer in the androidx.fragment:fragment-testing library with Hilt. This is because this code relies on activities that are not annotated with @AndroidEntryPoint.
+Instead, use the launchFragmentInHiltContainer code from the architecture-samples GitHub repository.

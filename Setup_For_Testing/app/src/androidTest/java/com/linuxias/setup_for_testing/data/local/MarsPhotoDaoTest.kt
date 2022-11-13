@@ -4,6 +4,8 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.filters.SmallTest
 import com.google.common.truth.Truth.assertThat
 import com.linuxias.setup_for_testing.getOrAwaitValue
+import com.linuxias.setup_for_testing.launchFragmentInHiltContainer
+import com.linuxias.setup_for_testing.ui.AddMarsPhotoItemFragment
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -43,6 +45,11 @@ class MarsPhotoDaoTest {
     @After
     fun teardown() {
         database.close()
+    }
+
+    @Test
+    fun testLaunchFragmentInHiltContainer() {
+        launchFragmentInHiltContainer<AddMarsPhotoItemFragment> {  }
     }
 
     @Test

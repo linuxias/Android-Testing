@@ -34,3 +34,8 @@ Organize a simple configuration and necessary information to test Fragment using
 Add the test activity for testing the Fragment and the Manifest.xml file specifying the activity information. Also, launchFragmentInContainer
 You cannot use the launchFragmentIncontainer in the androidx.fragment:fragment-testing library with Hilt. This is because this code relies on activities that are not annotated with @AndroidEntryPoint.
 Instead, use the launchFragmentInHiltContainer code from the architecture-samples GitHub repository.
+
+### 5. testing_fragment_with_navigation
+Codes and tests for switching between fragments were written using Navigation.
+To test code requiring user interaction, Espresso and Mockito library are used to create mock objects.
+NavController is created as a mock object for fragments switched through the Navigation library, and view events are executed and processed through Espresso.

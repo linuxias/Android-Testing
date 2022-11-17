@@ -48,11 +48,6 @@ class MarsPhotoDaoTest {
     }
 
     @Test
-    fun testLaunchFragmentInHiltContainer() {
-        launchFragmentInHiltContainer<AddMarsPhotoItemFragment> {  }
-    }
-
-    @Test
     fun insertTestEntity() = runTest {
         val testEntity = MarsPhotoItem(1000, "id", "type", "resource_link", 1)
         dao.insertMarsPhotoItem(testEntity)

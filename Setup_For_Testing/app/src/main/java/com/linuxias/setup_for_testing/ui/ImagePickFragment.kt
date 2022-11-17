@@ -6,17 +6,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.linuxias.setup_for_testing.R
+import com.linuxias.setup_for_testing.databinding.FragmentAddMarsPhotoItemBinding
+import com.linuxias.setup_for_testing.databinding.FragmentImagePickBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ImagePickFragment : Fragment(R.layout.fragment_image_pick) {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private var _binding: FragmentImagePickBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_mars_photo_item, container, false)
+        _binding = FragmentImagePickBinding.inflate(inflater, container, false)
+        return binding.root
     }
 }

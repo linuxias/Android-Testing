@@ -5,18 +5,43 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.linuxias.setup_for_testing.R
+import com.linuxias.setup_for_testing.databinding.FragmentAddMarsPhotoItemBinding
+import com.linuxias.setup_for_testing.databinding.FragmentMarsPhotoBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AddMarsPhotoItemFragment : Fragment(R.layout.fragment_add_mars_photo_item) {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private val viewModel by viewModels<MarsPhotoViewModel>()
+
+    private var _binding: FragmentAddMarsPhotoItemBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_mars_photo_item, container, false)
+        _binding = FragmentAddMarsPhotoItemBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.ivMarsImage.setOnClickListener {
+            findNavController().navigate(R.id.action_addMarsPhotoFragment_to_imagePickFragment)
+        }
+
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                viewModel.setCurImageUrl("")
+                findNavController().popBackStack()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(callback)
     }
 }

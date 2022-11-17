@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/marsPhotoFragment">
+
+    <fragment
+        android:id="@+id/marsPhotoFragment"
+        android:name="com.linuxias.setup_for_testing.ui.MarsPhotoFragment"
+        android:label="MarsPhotoFragment" >
+        <action
+            android:id="@+id/action_marsPhotoFragment_to_addMarsPhotoFragment"
+            app:destination="@id/addMarsPhotoItemFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addMarsPhotoItemFragment"
+        android:name="com.linuxias.setup_for_testing.ui.AddMarsPhotoItemFragment"
+        android:label="AddMarsPhotoItemFragment" >
+        <action
+            android:id="@+id/action_addMarsPhotoFragment_to_imagePickFragment"
+            app:destination="@id/imagePickFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/imagePickFragment"
+        android:name="com.linuxias.setup_for_testing.ui.ImagePickFragment"
+        android:label="ImagePickFragment" />
+
+</navigation>

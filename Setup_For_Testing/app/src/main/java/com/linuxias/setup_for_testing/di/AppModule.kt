@@ -10,6 +10,7 @@ import com.linuxias.setup_for_testing.repository.MarsPhotoRepository
 import com.linuxias.setup_for_testing.repository.MarsPhotoRepositoryImpl
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

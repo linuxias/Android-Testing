@@ -1,9 +1,6 @@
 package com.linuxias.setup_for_testing.ui
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.linuxias.setup_for_testing.data.local.MarsPhotoItem
 import com.linuxias.setup_for_testing.data.remote.MarsPhotoProperty
 import com.linuxias.setup_for_testing.other.Event

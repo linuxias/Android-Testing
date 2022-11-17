@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/marsPhotoFragment">
 
     <fragment
         android:id="@+id/marsPhotoFragment"
         android:name="com.linuxias.setup_for_testing.ui.MarsPhotoFragment"
-        android:label="MarsPhotoFragment" >
+        android:label="MarsPhotoFragment"
+        tools:layout="@layout/fragment_mars_photo">
         <action
             android:id="@+id/action_marsPhotoFragment_to_addMarsPhotoFragment"
             app:destination="@id/addMarsPhotoItemFragment" />
@@ -15,7 +17,8 @@
     <fragment
         android:id="@+id/addMarsPhotoItemFragment"
         android:name="com.linuxias.setup_for_testing.ui.AddMarsPhotoItemFragment"
-        android:label="AddMarsPhotoItemFragment" >
+        android:label="AddMarsPhotoItemFragment"
+        tools:layout="@layout/fragment_add_mars_photo_item">
         <action
             android:id="@+id/action_addMarsPhotoFragment_to_imagePickFragment"
             app:destination="@id/imagePickFragment" />
@@ -23,6 +26,7 @@
     <fragment
         android:id="@+id/imagePickFragment"
         android:name="com.linuxias.setup_for_testing.ui.ImagePickFragment"
-        android:label="ImagePickFragment" />
+        android:label="ImagePickFragment"
+        tools:layout="@layout/fragment_image_pick"/>
 
 </navigation>

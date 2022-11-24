@@ -2,6 +2,11 @@ package com.linuxias.setup_for_testing.di
 
 import android.content.Context
 import androidx.room.Room
+import com.bumptech.glide.Glide
+import com.bumptech.glide.RequestManager
+import com.bumptech.glide.request.RequestOptions
+import com.linuxias.setup_for_testing.R
+import com.linuxias.setup_for_testing.adapters.ImageAdapter
 import com.linuxias.setup_for_testing.data.local.MarsPhotoDao
 import com.linuxias.setup_for_testing.data.local.MarsPhotoItemDatabase
 import com.linuxias.setup_for_testing.data.remote.MARS_BASE_URL
@@ -53,6 +58,31 @@ object DataSourceeModule {
             .create(MarsApiService::class.java)
     }
 }
+
+@Module
+@InstallIn(SingletonComponent::class)
+object GlideModule {
+    @Singleton
+    @Provides
+    fun provideGlideInstance(
+        @ApplicationContext context: Context
+    ) = Glide.with(context).setDefaultRequestOptions(
+        RequestOptions()
+            .placeholder(R.drawable.ic_image)
+            .error(R.drawable.ic_image)
+    )
+}
+
+@Module
+@InstallIn(SingletonComponent::class)
+object ImageAdapterModule {
+    @Singleton
+    @Provides
+    fun provideImageAdapter(
+        glide: RequestManager
+    ) = ImageAdapter(glide)
+}
+
 @Module
 @InstallIn(SingletonComponent::class)
 object DatabaseModule {

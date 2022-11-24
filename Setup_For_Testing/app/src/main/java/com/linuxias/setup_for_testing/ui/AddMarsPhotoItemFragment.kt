@@ -7,11 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.linuxias.setup_for_testing.R
 import com.linuxias.setup_for_testing.databinding.FragmentAddMarsPhotoItemBinding
-import com.linuxias.setup_for_testing.databinding.FragmentMarsPhotoBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -33,7 +31,9 @@ class AddMarsPhotoItemFragment : Fragment(R.layout.fragment_add_mars_photo_item)
         super.onViewCreated(view, savedInstanceState)
 
         binding.ivMarsImage.setOnClickListener {
-            findNavController().navigate(R.id.action_addMarsPhotoFragment_to_imagePickFragment)
+            findNavController().navigate(
+                AddMarsPhotoItemFragmentDirections.actionAddMarsPhotoFragmentToImagePickFragment()
+            )
         }
 
         val callback = object : OnBackPressedCallback(true) {

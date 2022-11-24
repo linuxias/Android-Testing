@@ -3,10 +3,12 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'com.google.dagger.hilt.android'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
     compileSdk 32
+    buildToolsVersion "32.0.0"
 
     defaultConfig {
         applicationId "com.linuxias.setup_for_testing"
@@ -39,7 +41,12 @@ android {
 
 dependencies {
     def room_version = "2.4.3"
-    def nav_version = "2.5.3"
+    def nav_version = "2.5.0"
+
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'com.google.android.material:material:1.6.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
     // Room
     implementation "androidx.room:room-runtime:$room_version"
@@ -66,18 +73,22 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.5.1"
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
 
+    // Coroutines
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1'
+
     // Dagger-Hilt
     implementation "com.google.dagger:hilt-android:2.44"
     kapt "com.google.dagger:hilt-compiler:2.44"
 
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.5.1'
-    implementation 'com.google.android.material:material:1.6.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-
     // Navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
+
+    // Glide
+    implementation 'com.github.bumptech.glide:glide:4.14.2'
+    kapt 'com.github.bumptech.glide:compiler:4.14.2'
 
     implementation "androidx.test:core:1.5.0"
 
@@ -92,16 +103,13 @@ dependencies {
 
     androidTestImplementation "junit:junit:4.13.2"
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
     androidTestImplementation "androidx.arch.core:core-testing:2.1.0"
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
     androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.2"
 
     androidTestImplementation 'com.google.dagger:hilt-android-testing:2.44'
     kaptAndroidTest 'com.google.dagger:hilt-android-compiler:2.44'
     debugImplementation "androidx.fragment:fragment-testing:1.5.4"
 
-    androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.2"
     androidTestImplementation "com.google.truth:truth:1.1.2"
     androidTestImplementation "androidx.room:room-testing:$room_version"
     androidTestImplementation "androidx.test:rules:1.5.0"

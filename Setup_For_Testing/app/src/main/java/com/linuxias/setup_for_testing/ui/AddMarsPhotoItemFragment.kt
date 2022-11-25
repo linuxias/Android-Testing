@@ -1,5 +1,6 @@
 package com.linuxias.setup_for_testing.ui
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,9 +12,10 @@ import androidx.navigation.fragment.findNavController
 import com.linuxias.setup_for_testing.R
 import com.linuxias.setup_for_testing.databinding.FragmentAddMarsPhotoItemBinding
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
-class AddMarsPhotoItemFragment : Fragment(R.layout.fragment_add_mars_photo_item) {
+class AddMarsPhotoItemFragment : Fragment() {
     private val viewModel by viewModels<MarsPhotoViewModel>()
 
     private var _binding: FragmentAddMarsPhotoItemBinding? = null
